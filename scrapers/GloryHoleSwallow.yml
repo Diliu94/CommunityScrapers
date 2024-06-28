@@ -2,11 +2,14 @@ name: "GloryHoleSwallow"
 sceneByURL:
   - action: scrapeXPath
     url:
-      - gloryholeswallow.com
+      - gloryholeswallow.com/tour/trailers
+      - gloryholeswallow.com/clips/scenes
+      - cumpsters.com/trailers
     scraper: sceneScraper
 xPathScrapers:
   sceneScraper:
     common:
+      $base: //base/@href
       $info: //div[@class='objectInfo']
     scene:
       Title: $info/h1
@@ -28,13 +31,19 @@ xPathScrapers:
       Tags:
         Name: $info//p[contains(text(),'Tags')]//a/text()
       Image:
-        selector: //div[@id='fakeplayer']//img/@src0_1x
+        selector: $base|//div[@id='fakeplayer']//img/@src0_1x
+        concat: '/'
         postProcess:
           - replace:
-              - regex: ^
-                with: https://gloryholeswallow.com
+            - regex: '^(.+\.com/)(clips|tour)?/+(clips|tour)?(.+)1x\.jpg$'
+              with: ${1}${2}${4}4x.jpg
       Studio:
-        Name:
-          fixed: GloryHole Swallow
+        Name: //meta[@name='author']/@content
+        URL:
+          selector: $base
+          postProcess:
+            - replace:
+              - regex: '^(.+\.com).*$'
+                with: $1
       URL: //link[@rel='canonical']/@href
-# Last Updated April 04, 2021
+# Last Updated June 28, 2024

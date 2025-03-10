@@ -28,6 +28,11 @@ xPathScrapers:
       Details:
         selector: $info/div[@class='content']/p/text()
         concat: "\n\n"
+        postProcess:
+          - replace:
+              # Strip out "Comment Rules" stated in every video description
+              - regex: (?s)\s*Comment Rules:.*
+                with: ""
       Tags:
         Name: $info//p[contains(text(),'Tags')]//a/text()
       Image:
@@ -61,4 +66,4 @@ xPathScrapers:
                 spytug: SpyTug
                 cumclinic: CumClinic
       URL: //link[@rel='canonical']/@href
-# Last Updated August 01, 2024
+# Last Updated March 11, 2025

@@ -25,6 +25,7 @@ studio_map = {
     "bjraw.com": "BJ Raw",
     "blackbullchallenge.com": "Black Bull Challenge",
     "cannonprod.com": "Cannon Productions",
+    "comeinside.com": "Come Inside",
     "cougarseason.com": "Cougar Season",
     "creampiethais.com": "Creampie Thais",
     "darkshade.com": "Darkshade",
@@ -34,6 +35,8 @@ studio_map = {
     "diredesires.com": "Dire Desires",
     "dirtyauditions.com": "Dirty Auditions",
     "divine-dd.com": "Divine-DD",
+    "doggvision.com": "DoggVision",
+    "dripdropprod.net": "DripDrip",
     "facialsforever.com": "Facials Forever",
     "freakmobmedia.com": "FreakMob Media",
     "gogobarauditions.com": "Gogo Bar Auditions",
@@ -46,6 +49,9 @@ studio_map = {
     "jav888.com": "JAV888",
     "jizzaddiction.com": "Jizz Addiction",
     "joeschmoevideos.com": "Joe Schmoe Videos",
+    "labelladx.com": "La BellaDX",
+    "lildsplayhouse.com": "Lil D's Playhouse",
+    "slutwife.labelladx.com": "La BellaDX",
     "lady-sonia.com": "Lady Sonia",
     "legendaryx.com": "Legendary X",
     "lezkey.com": "LezKey",
@@ -55,12 +61,14 @@ studio_map = {
     "members.hobybuchanon.com": "Hoby Buchanon",
     "mongerinasia.com": "Monger In Asia",
     "nickmarxx.com": "Nick Marxx",
+    "nikkizee.com": "Nikki Zee",
     "nylonperv.com": "Nylon Perv",
     "nympho.com": "Nympho",
     "pervect.com": "Pervect",
     "poundedpetite.com": "Pounded Petite",
     "povperv.com": "POV Perv",
     "premium-nickmarxx.com": "Nick Marxx",
+    "queercrush.com": "QueerCrush",
     "red-xxx.com": "Red-XXX",
     "rickysroom.com": "Ricky's Room",
     "s3xus.com": "S3XUS",
@@ -416,7 +424,7 @@ def scrape_scene(url: str) -> ScrapedScene | None:
         scene = to_scraped_scene_from_content(content)
     if video := props.get("video"):
         scene = to_scraped_scene_from_video(video)
-    scene["url"] = url
+    scene["urls"] = [url]
 
     if playlist := dig(props, "playlist", "data", 0):
         scene["movies"] = [to_scraped_movie(playlist)]
